@@ -1,0 +1,23 @@
+nav {
+    background-color : white;
+    height : 200;
+    display: flex;
+    justify-content: flex-end;
+}
+
+ul {
+    list-style-type: "none";
+    margin: 20px 10px 20px 10px;
+    padding: 0;
+    display: flex;
+}
+
+li {
+    display: block;
+    width: 60;
+    margin: 10px
+} 
+
+a {
+    display: block;
+}

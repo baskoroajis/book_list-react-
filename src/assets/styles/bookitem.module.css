@@ -1,0 +1,27 @@
+.container{
+    box-shadow: 0px 0px 15px gray;
+  
+}
+
+.imagecontainer{
+
+}
+
+img {
+    height: 200px;
+    width: 100%;
+
+}
+
+.bottomcontainer{
+    padding: 5px;
+    background-color: white;
+}
+
+button{
+    margin-top: 10px;
+    height: 30px;
+    background-color: blueviolet;
+    color: bisque;
+    border: none
+}
