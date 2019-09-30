@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import Header from '../components/Header'
 import BookItem from '../components/BookItem'
 import Style from '../assets/styles/mainpage.module.css'
-import Axios from 'axios'
+import {getBookData} from '../utils/BooklistAPI'
 
 class MainPage extends Component{
 
@@ -16,20 +16,19 @@ class MainPage extends Component{
     }
 
     callData(searchParam){
-        let full_url = "https://www.googleapis.com/books/v1/volumes?q="+ searchParam
-        Axios.get(full_url).then((response) => {
-            // console.log(response);
-            this.setState({
-                data : response.data.items
-            })
+        // getBookData(searchParam).then((response) => {
+        //     this.setState({
+        //         data : response.data.items
+        //     })
 
-            console.log(this.state.data)
-        });
+        //     console.log(this.state.data)
+        // });
     }
 
     componentDidMount(){
-        this.callData("JSS");
+        this.callData("Html");
     }
+
     render(){
         return(
             <div>
@@ -37,7 +36,7 @@ class MainPage extends Component{
                 <div className={Style.bookcontainer}>
                     {
                         this.state.data.map((e,i) =>{
-                            console.log("e"+JSON.stringify(e))
+                         //   console.log("e"+JSON.stringify(e))
                             return( <BookItem title={e.volumeInfo.title} author={e.volumeInfo.authors} thumbnail={e.volumeInfo.imageLinks.thumbnail}key={i}></BookItem>)
                         })
                     }
