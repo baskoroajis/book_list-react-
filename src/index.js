@@ -1,6 +1,5 @@
 import React from 'react';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers/Reducers'
 import {render} from 'react-dom'
@@ -12,7 +11,7 @@ const store = createStore(rootReducer)
 
 render(
     <Provider store={store}>
-        <MainPage />
+        <MainPage store={store} />
     </Provider>, 
     document.getElementById('root')
 )
