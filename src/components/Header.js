@@ -3,7 +3,7 @@ import '../assets/styles/header.css'
 import { getBookData } from '../utils/BooklistAPI'
 
 
-const Header = () => {
+const Header = (props) => {
 
     
     function getData(param){
@@ -14,7 +14,7 @@ const Header = () => {
     return(
        <nav>
           <ul >
-              <li><a href="#" onClick={() => {getData("HTML")}}>HTML</a></li>
+              <li><a href="#" onClick={() => {props.handleButtonClick("HTML")}}>HTML</a></li>
               <li><a href="#" onClick={() => {getData("CSS")}}>CSS</a></li>
               <li><a href="#" onClick={() => {getData("Javasript")}}>Javascript</a></li>
               <li><a href="#" onClick={() => {getData("React")}}>React</a></li>

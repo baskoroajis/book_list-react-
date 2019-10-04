@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {getBookData} from '../utils/BooklistAPI'
 import {successGetData} from '../actions/BooklistAction'
 import {bindActionCreators} from 'redux'
+import Axios from 'axios'
 
 class MainPage extends Component{
 
@@ -18,7 +19,23 @@ class MainPage extends Component{
             error :""
         }
       
+        props.store.subscribe(() => {
+            console.log("subscribe called ", props.store.getState())
+        })
+       
+        this.handleButtonClick = this.handleButtonClick.bind(this)
         //this.props.store.dispatch(successGetData(result) => {})
+    }
+
+    handleButtonClick(menuClicked){
+        console.log("handle button!!", menuClicked)
+        Axios.get("https://www.googleapis.com/books/v1/volumes?q="+menuClicked).then((Response) => {
+            // Action.successGetData(Response)
+            this.props.store.dispatch({
+                data : Response,
+                type : 'IS_SUCCESS'
+            })
+        })
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
@@ -37,7 +54,7 @@ class MainPage extends Component{
         // }
         return(
             <div>
-                <Header></Header>
+                <Header handleButtonClick={this.handleButtonClick}></Header>
                 <div className={Style.bookcontainer}>
                     {
                         // this.state.data.map((e,i) =>{
