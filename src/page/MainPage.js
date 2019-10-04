@@ -15,12 +15,16 @@ class MainPage extends Component{
         console.log("test "+props.store)
         this.state = {
             isLoading : false,
-            data : {},
+            data : [],
             error :""
         }
       
         props.store.subscribe(() => {
-            console.log("subscribe called ", props.store.getState())
+            console.log("subscribe called ", props.store.getState().data.data.data.items)
+            let items = props.store.getState().data.data.data.items
+            this.setState({
+                data : items
+            })
         })
        
         this.handleButtonClick = this.handleButtonClick.bind(this)
@@ -57,10 +61,10 @@ class MainPage extends Component{
                 <Header handleButtonClick={this.handleButtonClick}></Header>
                 <div className={Style.bookcontainer}>
                     {
-                        // this.state.data.map((e,i) =>{
-                        //  //   console.log("e"+JSON.stringify(e))
-                        //     return( <BookItem title={e.volumeInfo.title} author={e.volumeInfo.authors} thumbnail={e.volumeInfo.imageLinks.thumbnail}key={i}></BookItem>)
-                        // })
+                        this.state.data.map((e,i) =>{
+                         //   console.log("e"+JSON.stringify(e))
+                            return( <BookItem title={e.volumeInfo.title} author={e.volumeInfo.authors} thumbnail={e.volumeInfo.imageLinks.thumbnail}key={i}></BookItem>)
+                        })
                     }
                 </div>
             </div>
@@ -76,7 +80,7 @@ class MainPage extends Component{
 //     }
 // }
 const mapStateToProps = (state) => ({ 
-    data: state.data,
+    // data: state.data,
     // any props you need else
  });
 
